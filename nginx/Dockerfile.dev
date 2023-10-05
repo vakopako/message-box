@@ -1,0 +1,16 @@
+# https://hub.docker.com/r/library/nginx/
+FROM nginx:alpine
+
+RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/nginx.conf
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+RUN mkdir /etc/nginx/ssl && chmod 0644 /etc/nginx/ssl
+
+COPY certs/ /etc/nginx/ssl/
+
+RUN chmod 0400 /etc/nginx/ssl/localhost.key
+EXPOSE 80
+EXPOSE 443
