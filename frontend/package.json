@@ -1,0 +1,37 @@
+{
+    "name": "message-box",
+    "version": "0.1.0",
+    "description": "Sending signals directly via peer to peer connection",
+    "main": "src/index.js",
+    "scripts": {
+        "build": "webpack --mode production",
+        "start": "node ./src/server.js",
+        "dev": "webpack serve"
+    },
+    "keywords": [
+        "react",
+        "webpack",
+        "babel",
+        "minimal",
+        "starter"
+    ],
+    "author": "Pavel Drbalek",
+    "license": "GPL",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/vakopako/message-box.git"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@swc/cli": "^0.1.62",
+        "@swc/core": "^1.3.91",
+        "swc-loader": "^0.2.3",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^4.15.1"
+    }
+}
