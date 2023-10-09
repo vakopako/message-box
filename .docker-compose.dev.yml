@@ -39,6 +39,13 @@ services:
       - "443:443"
     networks:
       - skynet
+  database:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432"
 networks:
   skynet:
     driver: bridge
