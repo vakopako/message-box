@@ -1,0 +1,24 @@
+# https://hub.docker.com/_/node/
+FROM node:20-alpine as base
+
+WORKDIR /home/node/app
+
+FROM base as install
+
+COPY ./package.json     /home/node/app
+# COPY ./package-lock.json /home/node/app
+
+RUN chown node:node /home/node/app
+
+# USER node
+RUN npm install
+
+FROM install as run
+
+COPY . /home/node/app
+
+EXPOSE 3333
+VOLUME /home/node/app/src
+
+CMD npx prisma generate && npx prisma db push npx prisma db seed && npm run dev
+
