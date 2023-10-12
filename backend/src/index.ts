@@ -1,10 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const dotenv = require('dotenv')
 
 import { Application } from 'express'
 
 const PORT = process.env.PORT || 3222
 
+dotenv.config()
 const app: Application = express()
 
 // Middlewares
