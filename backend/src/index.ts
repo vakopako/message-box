@@ -1,54 +1,44 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const dotenv = require('dotenv')
+import express, { Application } from 'express';
+import dotenv from 'dotenv';
 
-import { Application } from 'express'
+import { groupsRouter, messagesRouter } from './routeMiddlewares';
+import errorHandler from './errorMiddleware';
 
-const PORT = process.env.PORT || 3222
+const PORT = process.env.PORT || 3222;
+const BASE_API_PATH = 'api';
 
-dotenv.config()
-const app: Application = express()
+dotenv.config();
+const app: Application = express();
 
-// Middlewares
-app.use(bodyParser.json())
+// JSON middleware
+app.use(express.json());
+
+// Error middleware
+app.use(errorHandler);
 
 /**
  * @description Middleware to check if the API key is valid
  */
 app.use((req, res, next) => {
-  const apiKey = req.headers['x-api-key']
+  const apiKey = req.headers['x-api-key'];
   if (apiKey === process.env.API_KEY) {
-    return next()
+    return next();
   } else {
-    return res.status(403).json({ error: 'Unauthorized' })
+    return res.status(403).json({ error: 'Unauthorized' });
   }
-})
+});
 
 /**
  * Route middlewares
  */
 
 // Message Routes
-app
-  .route('/api/messages')
-  .get((req, res) => {
-    res.json({ data: 'GET messages' })
-  })
-  .post((req, res) => {
-    res.json({ data: 'Message posted' })
-  })
+app.use(`/${BASE_API_PATH}/messages`, messagesRouter);
 
 // Group Routes
-app
-  .route('/api/groups')
-  .get((req, res) => {
-    res.json({ data: 'GET groups' })
-  })
-  .post((req, res) => {
-    res.json({ data: 'Group created' })
-  })
+app.use(`/${BASE_API_PATH}/groups`, groupsRouter);
 
 // Server to listen on port
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
+  console.log(`Server is running on port ${PORT}`);
+});
