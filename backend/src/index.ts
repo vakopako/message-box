@@ -16,17 +16,6 @@ app.use(express.json());
 // Error middleware
 app.use(errorHandler);
 
-/**
- * @description Middleware to check if the API key is valid
- */
-app.use((req, res, next) => {
-  const apiKey = req.headers['x-api-key'];
-  if (apiKey === process.env.API_KEY) {
-    return next();
-  } else {
-    return res.status(403).json({ error: 'Unauthorized' });
-  }
-});
 
 /**
  * Route middlewares
