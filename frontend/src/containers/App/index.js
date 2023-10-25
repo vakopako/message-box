@@ -1,15 +1,18 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
 
-import Home from "../Home";
+import Router from "./AppRouter";
+
+const queryClient = new QueryClient()
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <Router />
+    </QueryClientProvider>
   );
 }
 
