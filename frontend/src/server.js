@@ -1,37 +1,19 @@
-const express = require("express");
-// const webpackDevMiddleware = require("webpack-dev-middleware");
-const webpack = require("webpack");
-const path = require("path");
-
-// const webpackConfig = require("../webpack.config.js");
+const express = require('express');
+const path = require('path');
 
 const app = express();
 
-// const compiler = webpack(webpackConfig);
+const indexFilePath = path.join(__dirname, '../static/index.html');
+const staticFolderPath = path.join(__dirname, '../static');
 
-// app.use(
-//     webpackDevMiddleware(compiler, {
-//         // hot: true,
-//         // filename: "../static/bundle.js",
-//         publicPath: "/",
-//         // stats: {
-//         //     colors: true
-//         // },
-//     })
-// );
+app.use(express.static(staticFolderPath));
 
-app.get("/", function (req, res) {
-    res.sendFile(
-        path.join(__dirname, "../static/index.html")
-    );
+app.get('*', (req, res) => {
+  res.sendFile(indexFilePath);
 });
 
-app.use(express.static(
-    path.join(__dirname, "../static")
-));
-
-const server = app.listen(3333, function () {
-    const host = server.address().address;
-    const port = server.address().port;
-    console.log("Listening at http://%s:%s", host, port);
+const server = app.listen(3333, () => {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.info('Listening at http://%s:%s', host, port);
 });
