@@ -3,14 +3,14 @@ import { Request, Response } from 'express';
 
 const prisma = new PrismaClient();
 
-const getManyGroups = (req: Request, res: Response) => {
-  const groups = prisma.group.findMany();
+const getManyGroups = async (req: Request, res: Response) => {
+  const groups = await prisma.group.findMany();
 
   if (!groups) {
-    return res.status(404).json({ error: 'Groups not found' });
+    return res.status(500).json({ error: 'Failed to get groups' });
   }
 
-  return res.json({ data: groups });
+  res.json({ payload: groups });
 };
 
 export default getManyGroups;
