@@ -3,7 +3,7 @@ import QrCodeLibrary from 'qrcode';
 
 const HARDCODED_MESSAGE_GROUP_ID = 'c0b2b020-6787-11ee-8c99-0242ac120002';
 
-const errorCallback = (error) => {
+const errorCallback = (error: Error | null | undefined): void => {
   if (error) console.error(error)
 }
 

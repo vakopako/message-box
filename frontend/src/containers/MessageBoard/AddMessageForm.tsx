@@ -1,32 +1,40 @@
 import React from 'react';
-import { useMutation, mutate } from 'react-query';
+import { useMutation } from 'react-query';
 
 import { post } from '../../utils/fetchRestApi';
 
+interface AddMessageFormProps {
+  groupId: string;
+  refreshBoardCallback: () => void;
+}
 
-const AddMessageForm = ({ groupId, refreshBoardCallback }) => {
+const AddMessageForm = ({ groupId, refreshBoardCallback }: AddMessageFormProps) => {
   const [message, setMessage] = React.useState('');
 
-  const { mutate } = useMutation({
+  const { mutate, isError } = useMutation({
     mutationKey: 'message',
     mutationFn: () => post.message({ groupId, message }),
     onSuccess: () => {
       setMessage('');
       refreshBoardCallback();
     },
-    onError: error => {
-      throw new Error(error);
-    },
   });
 
-  const handleSubmit = React.useCallback(event => {
+  const handleSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     mutate();
   }, []);
 
-  const handleChange = React.useCallback(event => {
+  const handleChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   }, []);
+  
+  if (isError) return (
+    <div>
+      <p>An error has occurred while adding your message.</p>
+      <p>Please try again later.</p>
+    </div>
+  )
 
   return (
     <form onSubmit={handleSubmit}>

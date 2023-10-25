@@ -1,8 +1,15 @@
-import React from 'react';
-
 import NoDataInterface from './NoDataInterface';
 
-const Messages = ({ messages }) => {
+interface Message {
+  id: string;
+  content: string;
+}
+
+interface MessagesProps {
+  messages: Message[];
+}
+
+const Messages = ({ messages }: MessagesProps) => {
 
   if (!Array.isArray(messages)) return <NoDataInterface />;
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 
@@ -9,11 +8,22 @@ import AddMessageForm from './AddMessageForm';
 const MessageBoard = () => {
   const { groupId } = useParams();
 
-  const { isPending, error, data: messages, refetch } = useQuery(get.messages(groupId));
+  const { isLoading, isError, data: messages, refetch } = useQuery(get.messages(groupId));
 
-  if (isPending) return 'Loading...';
+  if (!groupId) return (
+    <div>
+      <p>No message box selected.</p>
+    </div>
+  )
 
-  if (error) return 'An error has occurred: ' + error.message;
+  if (isLoading) return 'Loading...';
+
+  if (isError) return (
+    <div>
+      <p>An error has occurred while loading the messages.</p>
+      <p>Please try again later.</p>
+    </div>
+  );
 
   return (
     <>
