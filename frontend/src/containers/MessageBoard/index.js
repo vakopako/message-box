@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { get } from '../../utils/fetchRestApi';
 import Messages from './Messages';
+import AddMessageForm from './AddMessageForm';
 
 const MessageBoard = () => {
   const { groupId } = useParams();
@@ -17,6 +18,7 @@ const MessageBoard = () => {
   return (
     <>
       <Messages messages={messages?.payload} />
+      <AddMessageForm groupId={groupId} refreshBoardCallback={refetch} />
     </>
   );
 };
