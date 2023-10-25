@@ -1,13 +1,18 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom/client';
 
-import App from "./containers/App";
+import App from './containers/App';
 
-document.addEventListener("DOMContentLoaded", function () {
-    ReactDOM.render(
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>,
-        document.getElementById("mount")
-    );
+const ReactApp = () => {
+  return (
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const rootNode = document.getElementById('root');
+
+  ReactDOM.createRoot(rootNode).render(<ReactApp />);
 });
