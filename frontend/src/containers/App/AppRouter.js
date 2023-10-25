@@ -9,6 +9,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/:groupId" element={<MessageBoard />} />
       </Routes>
     </BrowserRouter>
   );
