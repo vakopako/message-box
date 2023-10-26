@@ -20,5 +20,10 @@ COPY . /home/node/app
 EXPOSE 3333
 VOLUME /home/node/app/src
 
-CMD npx prisma generate && npx prisma db seed && npx prisma db push && npm run dev
+CMD npx prisma generate \
+  && npx prisma db push \ 
+  && npx prisma db seed \ 
+  && npm run dev
+
+
 
