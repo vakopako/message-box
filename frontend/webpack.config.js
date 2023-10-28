@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
     mode: "development",
     context: path.join(__dirname, "src"),
-    entry: ["./main.js"],
+    entry: ["./main.tsx"],
     output: {
         path: path.join(__dirname, "static"),
         filename: "bundle.js"
@@ -17,10 +17,13 @@ module.exports = {
             directory: path.join(__dirname, 'static'),
         },
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.json']
+    },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(tsx?|jsx?)$/,
                 exclude: /node_modules/,
                 use: ["swc-loader"]
             }
