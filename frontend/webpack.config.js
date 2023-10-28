@@ -9,10 +9,16 @@ module.exports = {
         filename: "bundle.js"
     },
     devServer: {
+        host: "0.0.0.0",
         port: 3333,
         allowedHosts: "all",
         historyApiFallback: true,
         compress: true,
+        client: {
+            webSocketURL: {
+                port: 443,
+            },
+        },
         static: {
             directory: path.join(__dirname, 'static'),
         },
