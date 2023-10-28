@@ -1,0 +1,13 @@
+{
+  "configurations": [
+    {
+      "name": "Debug frontend Node app",
+      "type": "node",
+      "request": "attach",
+      "remoteRoot": "/home/node/app/",
+      "port": 9229,
+      "address": "0.0.0.0",
+      "localRoot": "${workspaceFolder}/frontend",
+    }
+  ]
+}

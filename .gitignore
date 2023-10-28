@@ -131,7 +131,8 @@ dist
 
 # IDE files
 .idea
-.vscode
+.vscode/*
+!.vscode/launch.json
 
 # OS files
 .DS_Store
