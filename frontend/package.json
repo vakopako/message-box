@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "node ./src/server.js",
-    "dev": "webpack serve"
+    "dev": "NODE_OPTIONS='--inspect-brk=0.0.0.0' webpack serve"
   },
   "author": "Pavel Drbalek",
   "license": "GPL",
