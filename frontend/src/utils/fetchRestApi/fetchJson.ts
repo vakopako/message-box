@@ -1,8 +1,8 @@
-import { fetchRestApiEndpoint } from './fetchRestApiEndpoint';
+import { fetchRestApiEndpoint, HttpMethod } from './fetchRestApiEndpoint';
 
-export const fetchJson = async url => {
+export const fetchJson = async (url: string) => {
   const options = {
-    method: 'GET',
+    method: HttpMethod.GET,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

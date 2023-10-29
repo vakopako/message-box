@@ -1,15 +1,14 @@
-export const validateUrl = (url) => {
-
+export const validateUrl = (url: string) => {
   if (!url) {
-    throw new Error("URL is required");
+    throw new Error('URL is required');
   }
 
   // is URL a valid url?
   try {
     new URL(url);
   } catch (error) {
-    throw new Error("URL is invalid");
+    throw new Error('URL is invalid');
   }
 
   return url;
-}
+};

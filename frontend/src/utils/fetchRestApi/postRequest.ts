@@ -1,14 +1,18 @@
-import { fetchRestApiEndpoint } from './fetchRestApiEndpoint';
+import { fetchRestApiEndpoint, HttpMethod } from './fetchRestApiEndpoint';
 
-export const postRequest = async (url, payload) => {
+interface MessagePayload {
+  groupId: string;
+  message: string;
+}
 
+export const postRequest = async (url: string, payload: MessagePayload) => {
   const body = JSON.stringify(payload);
 
   const options = {
-    method: 'POST',
+    method: HttpMethod.POST,
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
     },
     body,
   };
