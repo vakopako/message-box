@@ -1,3 +1,13 @@
+The Seven Commandments
+
+1. write tests
+2. KISS
+3. DRY
+4. strict ts
+5. declarative code
+6. small files
+7. obey the seven commandments
+
 # Set up 🚀 
 
 0. run setup.sh or follow with further steps

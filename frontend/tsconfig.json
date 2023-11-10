@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": "../", // jest takes test data from seed file
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "strict": true,
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*"]
+  "types": ["@testing-library/jest-dom", "jest", "node"],
+  "include": ["src/**/*", "."]
 }

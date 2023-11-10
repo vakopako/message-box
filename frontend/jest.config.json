@@ -1,0 +1,16 @@
+{
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/**/*.d.ts"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/"
+  ],
+  "transform": {
+    "^.+\\.(t|j)sx?$": "@swc/jest"
+  },
+  "setupFilesAfterEnv": [
+    "./jestSetup.ts"
+  ],
+  "testEnvironment": "./jestTestEnvironment.ts"
+}
