@@ -6,9 +6,8 @@ export const validateUrl = (url: string) => {
   // is URL a valid url?
   try {
     new URL(url);
+    return url;
   } catch (error) {
     throw new Error('URL is invalid');
   }
-
-  return url;
 };

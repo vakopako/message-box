@@ -31,7 +31,10 @@ export const fetchRestApiEndpoint = async (
 
   const request = new Request(validatedUrl, options);
 
-  const response = await fetch(request);
-
-  return response;
+  try {
+    const response = await fetch(request);
+    return response;
+  } catch (error) {
+    throw new Error('Fetch error');
+  }
 };

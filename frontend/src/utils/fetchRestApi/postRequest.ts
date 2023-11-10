@@ -23,5 +23,10 @@ export const postRequest = async (url: string, payload: MessagePayload) => {
     throw new Error('Failed to post');
   }
 
-  return response.json();
+  try {
+    const json = response.json();
+    return json;
+  } catch (error) {
+    throw new Error('Response is not JSON');
+  }
 };

@@ -12,7 +12,7 @@ export const fetchJson = async (url: string) => {
   const response = await fetchRestApiEndpoint(url, options);
 
   if (!response.ok) {
-    throw new Error(response.statusText);
+    throw new Error('Failed to fetch');
   }
 
   try {
