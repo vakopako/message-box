@@ -1,23 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
+import { GROUPS, MESSAGES } from './seedData';
 
-// Defined data
-
-const GROUPS = [
-  {
-    id: 'c0b2b020-6787-11ee-8c99-0242ac120002',
-    name: 'Group',
-  },
-]
-
-const MESSAGES = [
-  {
-    id: 'cf717718-6787-11ee-8c99-0242ac120002',
-    content: 'Hello world!',
-    groupId: GROUPS[0].id,
-  },
-]
+const prisma = new PrismaClient();
 
 // Seed data with upsert
 

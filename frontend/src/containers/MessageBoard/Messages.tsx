@@ -1,3 +1,5 @@
+import React from 'react';
+
 import NoDataInterface from './NoDataInterface';
 
 interface Message {
@@ -10,7 +12,6 @@ interface MessagesProps {
 }
 
 const Messages = ({ messages }: MessagesProps) => {
-
   if (!Array.isArray(messages)) return <NoDataInterface />;
 
   return (
@@ -20,6 +21,6 @@ const Messages = ({ messages }: MessagesProps) => {
       ))}
     </ul>
   );
-}
+};
 
 export default Messages;
