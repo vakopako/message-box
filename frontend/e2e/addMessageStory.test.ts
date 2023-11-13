@@ -4,6 +4,11 @@ import { CONSTANTS } from './constants';
 
 const testMessage = 'One two three';
 
+// to bypass the self-signed certificate
+test.use({
+  ignoreHTTPSErrors: true,
+});
+
 test('can add message', async ({ page }) => {
   // visit homepage
   await page.goto(CONSTANTS.url.dev);
