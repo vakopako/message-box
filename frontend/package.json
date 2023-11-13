@@ -12,7 +12,9 @@
     "test:unit:watch": "jest --watch",
     "test:unit:coverage": "jest --coverage",
     "test:unit:dev": "jest --onlyChanged",
-    "test:unit:shots": "jest --updateSnapshot"
+    "test:unit:shots": "jest --updateSnapshot",
+    "test:e2e": "npx playwright test",
+    "test:e2e:dev": "npx playwright test --ui"
   },
   "author": "Pavel Drbalek",
   "license": "GPL",
