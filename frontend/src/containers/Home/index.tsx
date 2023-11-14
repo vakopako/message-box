@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
+import { Box, Typography, Link as MuiLink } from '@mui/material';
 
-import QrCode from "../../components/QrCode";
+import QrCode from '../../components/QrCode';
 
-const Wrapper = styled.div`
+const FlexBox = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Title = styled.h1`
+const Heading = styled(Typography)`
   text-align: center;
 `;
 
@@ -18,11 +19,13 @@ const HARDCODED_MESSAGE_GROUP_ID = 'c0b2b020-6787-11ee-8c99-0242ac120002';
 
 const Home = () => {
   return (
-    <Wrapper>
-      <Title>Scan the QR code</Title>
+    <FlexBox>
+      <Heading variant="h2">Scan the QR code</Heading>
       <QrCode groupId={HARDCODED_MESSAGE_GROUP_ID} />
-      <Link to={`/${HARDCODED_MESSAGE_GROUP_ID}`}>or just click here</Link>
-    </Wrapper>
+      <MuiLink component={Link} to={`/${HARDCODED_MESSAGE_GROUP_ID}`}>
+        or just click here
+      </MuiLink>
+    </FlexBox>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { List, ListItem } from '@mui/material';
 
 import NoDataInterface from './NoDataInterface';
 
@@ -15,11 +16,11 @@ const Messages = ({ messages }: MessagesProps) => {
   if (!Array.isArray(messages)) return <NoDataInterface />;
 
   return (
-    <ul>
+    <List>
       {messages.map(message => (
-        <li key={message.id}>{message.content}</li>
+        <ListItem key={message.id}>{message.content}</ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
 

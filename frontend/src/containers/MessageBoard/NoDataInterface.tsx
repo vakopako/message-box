@@ -1,12 +1,9 @@
 import React from 'react';
+import { Alert } from '@mui/material';
 
 const NoDataInterface = () => {
 
-  return (
-    <div>
-      No messages in this box yet. Add one!
-    </div>
-  );
+  return <Alert severity="info">No messages in this box yet. Add one!</Alert>;
 }
 
 export default NoDataInterface;

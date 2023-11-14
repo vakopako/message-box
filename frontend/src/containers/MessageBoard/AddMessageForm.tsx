@@ -1,14 +1,25 @@
 import React from 'react';
 import { useMutation } from 'react-query';
+import { Alert, TextField, Button } from '@mui/material';
+import styled from 'styled-components';
 
 import { post } from '../../utils/fetchRestApi';
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+`;
 
 interface AddMessageFormProps {
   groupId: string;
   refreshBoardCallback: () => void;
 }
 
-const AddMessageForm = ({ groupId, refreshBoardCallback }: AddMessageFormProps) => {
+const AddMessageForm = ({
+  groupId,
+  refreshBoardCallback,
+}: AddMessageFormProps) => {
   const [message, setMessage] = React.useState('');
 
   const { mutate, isError } = useMutation({
@@ -20,32 +31,43 @@ const AddMessageForm = ({ groupId, refreshBoardCallback }: AddMessageFormProps) 
     },
   });
 
-  const handleSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    mutate();
-  }, []);
+  const handleSubmit = React.useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      mutate();
+    },
+    []
+  );
 
-  const handleChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setMessage(event.target.value);
-  }, []);
-  
-  if (isError) return (
-    <div>
-      <p>An error has occurred while adding your message.</p>
-      <p>Please try again later.</p>
-    </div>
-  )
+  const handleChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setMessage(event.target.value);
+    },
+    []
+  );
+
+  if (isError)
+    return (
+      <Alert severity="error">
+        <p>An error has occurred while adding your message.</p>
+        <p>Please try again later.</p>
+      </Alert>
+    );
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Form onSubmit={handleSubmit}>
+      <TextField
         type="text"
+        label="Enter your message here"
         value={message}
         onChange={handleChange}
-        placeholder="Enter your message here"
+        variant="outlined"
+        fullWidth
       />
-      <button type="submit">Add</button>
-    </form>
+      <Button type="submit" variant="contained">
+        Send
+      </Button>
+    </Form>
   );
 };
 

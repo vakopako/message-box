@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { Alert } from '@mui/material';
 
 import { get } from '../../utils/fetchRestApi';
 import Messages from './Messages';
@@ -18,19 +19,19 @@ const MessageBoard = () => {
 
   if (!groupId)
     return (
-      <div>
+      <Alert severity="info">
         <p>No message box selected.</p>
-      </div>
+      </Alert>
     );
 
   if (isLoading) return 'Loading...';
 
   if (isError)
     return (
-      <div>
+      <Alert severity="error">
         <p>An error has occurred while loading the messages.</p>
         <p>Please try again later.</p>
-      </div>
+      </Alert>
     );
 
   return (
