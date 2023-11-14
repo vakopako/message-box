@@ -21,7 +21,7 @@ test('can add message', async ({ page }) => {
 
   // send out a message
   await page.getByRole('textbox').fill(testMessage);
-  await page.getByRole('button', { name: 'Add' }).click();
+  await page.getByRole('button', { name: 'Send' }).click();
 
   // the message should be added to the list
   await expect(page.getByRole('list')).toContainText(testMessage);
