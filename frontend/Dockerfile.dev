@@ -3,10 +3,18 @@ FROM node:20-alpine as base
 
 WORKDIR /home/node/app
 
-# used solely for unit testing
-RUN sudo apt-get install build-essential \
-  libcairo2-dev libpango1.0-dev libjpeg-dev \
-  libgif-dev librsvg2-dev
+RUN apk update
+
+# Install build-base (Alpine's equivalent of build-essential)
+RUN apk add build-base
+
+# Install other dependencies
+RUN apk add \
+  cairo-dev \
+  pango-dev \
+  jpeg-dev \
+  librsvg-dev
+# gif-dev \
 
 FROM base as install
 
